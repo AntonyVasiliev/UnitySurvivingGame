@@ -41,7 +41,7 @@ ModelImporter:
     second: Armature|run
   - first:
       74: 5178057079044878478
-    second: Armature|run.001
+    second: run.001
   externalObjects: {}
   materials:
     materialImportMode: 2
@@ -419,7 +419,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Armature|run.001
+      name: run.001
       takeName: Armature|run.001
       internalID: 0
       firstFrame: 0
