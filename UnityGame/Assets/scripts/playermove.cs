@@ -6,6 +6,7 @@ public class playermove : MonoBehaviour
 {
     public CharacterController controller;
 
+    public Animator animator;
     public float speed = 12f;
     public float gravity = -8.9f;
     public float jumppower = 4f;
@@ -29,7 +30,10 @@ public class playermove : MonoBehaviour
 
         controller.Move(move * speed * Time.deltaTime);
         if (Input.GetKeyDown(KeyCode.LeftShift))
+        {
             speed = 18f;
+            animator.Play("run");
+        }
         if (Input.GetKeyUp(KeyCode.LeftShift))
             speed = 12f;
         if (Input.GetButtonDown("Jump") && isgrounded)

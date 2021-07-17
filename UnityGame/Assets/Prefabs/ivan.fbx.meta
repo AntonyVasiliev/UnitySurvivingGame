@@ -38,10 +38,10 @@ ModelImporter:
     second: Armature|naruto.001
   - first:
       74: 1303299601406483602
-    second: Armature|run
+    second: run
   - first:
       74: 5178057079044878478
-    second: run.001
+    second: Armature|run.001
   externalObjects: {}
   materials:
     materialImportMode: 2
@@ -74,15 +74,15 @@ ModelImporter:
       name: naruto
       takeName: naruto
       internalID: 0
-      firstFrame: 0
-      lastFrame: 23
+      firstFrame: 6.8999996
+      lastFrame: 20
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 0
+      loopTime: 1
       loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0
@@ -390,7 +390,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Armature|run
+      name: run
       takeName: Armature|run
       internalID: 0
       firstFrame: 0
@@ -401,7 +401,7 @@ ModelImporter:
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 0
+      loopTime: 1
       loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0
@@ -419,7 +419,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: run.001
+      name: Armature|run.001
       takeName: Armature|run.001
       internalID: 0
       firstFrame: 0
