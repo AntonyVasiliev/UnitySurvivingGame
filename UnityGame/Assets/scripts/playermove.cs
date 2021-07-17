@@ -28,7 +28,10 @@ public class playermove : MonoBehaviour
         Vector3 move = transform.right * x + transform.forward * z;
 
         controller.Move(move * speed * Time.deltaTime);
-
+        if (Input.GetKeyDown(KeyCode.LeftShift))
+            speed = 18f;
+        if (Input.GetKeyUp(KeyCode.LeftShift))
+            speed = 12f;
         if (Input.GetButtonDown("Jump") && isgrounded)
         {
             velocity.y = Mathf.Sqrt(jumppower * 2f * -gravity);
