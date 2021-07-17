@@ -1,7 +1,12 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:UnityGame/Assets/animation.meta
 guid: 866678bebb5f75b46b9812a6ca5ceadb
 folderAsset: yes
 DefaultImporter:
+=======
+guid: b88b04f52ec9b754caaac5f28fe4e706
+PrefabImporter:
+>>>>>>> 06bb87759c9d10c8adf7d8c3da28c010ed86f5a2:UnityGame/Assets/Prefabs/player.prefab.meta
   externalObjects: {}
   userData: 
   assetBundleName: 
