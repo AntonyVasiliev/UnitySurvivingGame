@@ -10,6 +10,10 @@ public class Day_Night : MonoBehaviour
 	public float fullDay = 2880f; 
 	[Range(0, 1)] public float currentTime;
 
+	void Start()
+    {
+		currentTime = 0.30f;
+    }
 
 	void Update()
 	{
@@ -37,28 +41,6 @@ public class Day_Night : MonoBehaviour
 			}
 		}
 
-		directionalLight.localRotation = Quaternion.Euler((currentTime * 360f) - 90, 170, 0);
+		directionalLight.localRotation = Quaternion.Euler((currentTime * 360f) - 90, 50, 0);
 	}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	/*  void Update()
-	  {
-		  skybox.SetFloat("_Blend", blend);
-	  }*/
-
 }
