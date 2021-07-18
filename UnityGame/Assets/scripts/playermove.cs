@@ -13,18 +13,36 @@ public class playermove : MonoBehaviour
     public Transform groundch;
     public float groundDistanse = 0.4f;
     public LayerMask groundMask;
+    public float x;
+    public float z;
+    bool isidle = false;
 
     Vector3 velocity;
     bool isgrounded;
     void Update()
     {
-        isgrounded = Physics.CheckSphere(groundch.position, groundDistanse, groundMask);
+        isgrounded = true;
         if (isgrounded && velocity.y < 0)
         {
             velocity.y = -2f;
         }
-        float x = Input.GetAxis("Horizontal");
-        float z = Input.GetAxis("Vertical");
+        x = Input.GetAxis("Horizontal");
+        z = Input.GetAxis("Vertical");
+
+        if (x == 0f && z == 0f)
+        {
+            if (!isidle)
+            {
+                animator.Play("idle_entry");
+                isidle = true;
+            }
+        }
+        else
+        {
+            animator.Play("move");
+            isidle = false;
+        }
+
 
         Vector3 move = transform.right * x + transform.forward * z;
 
@@ -32,10 +50,13 @@ public class playermove : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.LeftShift))
         {
             speed = 18f;
-            animator.Play("run");
+            animator.Play("naruto");
         }
         if (Input.GetKeyUp(KeyCode.LeftShift))
+        {
             speed = 12f;
+            animator.Play("move");
+        }
         if (Input.GetButtonDown("Jump") && isgrounded)
         {
             velocity.y = Mathf.Sqrt(jumppower * 2f * -gravity);

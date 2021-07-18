@@ -9,18 +9,18 @@ public class WorldGeneration : MonoBehaviour
 
     private void Start()
     {
-        for (int i = 0; i < 60; i++)
+        for (int i = 0; i < 100; i++)
         {
             int rand = Random.Range(0, trees.Length - 1);
-            int xrand = Random.Range(0, 300);
-            int zrand = Random.Range(0, 300);
+            int xrand = Random.Range(0, 400);
+            int zrand = Random.Range(0, 400);
             Instantiate(trees[rand], new Vector3(xrand, 500, zrand), Quaternion.identity);
         }
-        for (int i = 0; i < 30; i++)
+        for (int i = 0; i < 50; i++)
         {
             int rand = Random.Range(0, stones.Length - 1);
-            int xrand = Random.Range(0, 300);
-            int zrand = Random.Range(0, 300);
+            int xrand = Random.Range(0, 400);
+            int zrand = Random.Range(0, 400);
             Instantiate(stones[rand], new Vector3(xrand, 500, zrand), Quaternion.identity);
         }
     }
