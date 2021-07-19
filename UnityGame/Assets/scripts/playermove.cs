@@ -11,7 +11,7 @@ public class playermove : MonoBehaviour
     public float gravity = -8.9f;
     public float jumppower = 4f;
     public Transform groundch;
-    public float groundDistanse = 0.4f;
+    public float groundDistanse = 1f;
     public LayerMask groundMask;
     public float x;
     public float z;
@@ -49,7 +49,9 @@ public class playermove : MonoBehaviour
         }
         else
         {
-            if ((animator.GetCurrentAnimatorStateInfo(0).IsName("idle_Loop_") || animator.GetCurrentAnimatorStateInfo(0).IsName("idle_Exit")) && !isexitidle)
+            if ((animator.GetCurrentAnimatorStateInfo(0).IsName("idle_Loop_") ||
+                animator.GetCurrentAnimatorStateInfo(0).IsName("idle_Exit")) &&
+                !isexitidle)
             {
                 animator.Play("idle_Exit");
                 Invoke("SpeedEqual12", 0.8f);
