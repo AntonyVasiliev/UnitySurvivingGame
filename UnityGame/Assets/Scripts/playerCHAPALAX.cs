@@ -4,15 +4,19 @@ using UnityEngine;
 
 public class playerCHAPALAX : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public Animator animator;
+    public GameObject trigger;
 
-    // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetMouseButton(0))
+        {
+            trigger.SetActive(true);
+            Invoke("TriggerOff", 1f);
+        }
+    }
+    void TriggerOff()
+    {
+        trigger.SetActive(false);
     }
 }

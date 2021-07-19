@@ -21,7 +21,7 @@ public class playermove : MonoBehaviour
     bool isgrounded;
     void Update()
     {
-        isgrounded = true;
+        isgrounded = Physics.CheckSphere(groundch.position, groundDistanse, groundMask);
         if (isgrounded && velocity.y < 0)
         {
             velocity.y = -2f;
