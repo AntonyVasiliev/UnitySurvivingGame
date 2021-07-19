@@ -15,10 +15,19 @@ public class playermove : MonoBehaviour
     public LayerMask groundMask;
     public float x;
     public float z;
-    bool isidle = false;
+    public bool isidle = false;
+    public bool isexitidle = false;
+    public bool isrunning= false;
 
     Vector3 velocity;
     bool isgrounded;
+
+    void SpeedEqual12()
+    {
+        isexitidle = true;
+    }
+
+
     void Update()
     {
         isgrounded = Physics.CheckSphere(groundch.position, groundDistanse, groundMask);
@@ -35,11 +44,20 @@ public class playermove : MonoBehaviour
             {
                 animator.Play("idle_entry");
                 isidle = true;
+                isexitidle = false;
             }
         }
         else
         {
-            animator.Play("move");
+            if ((animator.GetCurrentAnimatorStateInfo(0).IsName("idle_Loop_") || animator.GetCurrentAnimatorStateInfo(0).IsName("idle_Exit")) && !isexitidle)
+            {
+                animator.Play("idle_Exit");
+                Invoke("SpeedEqual12", 0.8f);
+            }
+            else if(isexitidle && !isrunning)
+            {
+                animator.Play("move");
+            }
             isidle = false;
         }
 
@@ -49,13 +67,15 @@ public class playermove : MonoBehaviour
         controller.Move(move * speed * Time.deltaTime);
         if (Input.GetKeyDown(KeyCode.LeftShift))
         {
+            isrunning = true;
             speed = 18f;
-            animator.Play("naruto");
+            animator.Play("run");
         }
         if (Input.GetKeyUp(KeyCode.LeftShift))
         {
             speed = 12f;
             animator.Play("move");
+            isrunning = false;
         }
         if (Input.GetButtonDown("Jump") && isgrounded)
         {
