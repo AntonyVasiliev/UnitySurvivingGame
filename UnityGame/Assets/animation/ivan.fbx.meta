@@ -190,7 +190,7 @@ ModelImporter:
       name: idle_entry
       takeName: Armature|idle_entry
       internalID: 0
-      firstFrame: 4
+      firstFrame: 0
       lastFrame: 25
       wrapMode: 0
       orientationOffsetY: 0
@@ -393,7 +393,7 @@ ModelImporter:
       name: run
       takeName: Armature|run
       internalID: 0
-      firstFrame: 7
+      firstFrame: 0
       lastFrame: 23
       wrapMode: 0
       orientationOffsetY: 0
