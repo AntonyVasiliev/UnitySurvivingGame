@@ -10,7 +10,7 @@ public class mouse_look : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
     }
 
-    void Update()
+    void  Update()
     {
         if (!InGameMenu.inmenu) {
             float mouseX = Input.GetAxis("Mouse X") * mouse_sensivity * Time.deltaTime;
