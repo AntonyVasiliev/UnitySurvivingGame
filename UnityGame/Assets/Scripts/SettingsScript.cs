@@ -6,11 +6,11 @@ using UnityEngine.UI;
 
 public class SettingsScript : MonoBehaviour
 {
-    public Dropdown graphicsDropdown, resolutionDropdown;
+    public Dropdown graphicsDropdown, resolutionDropdown, languageDropdown;
     public Slider volumeSlider;
     public AudioMixer audioMixer;
     private float mainVolume;
-    private int GraphicsQuality, resolutionInd;
+    private int GraphicsQuality, resolutionInd, languageInd;
     private bool IsFullScreen;
     Resolution resolution;
     Resolution[] resolutions;
@@ -40,6 +40,9 @@ public class SettingsScript : MonoBehaviour
 
         if (!PlayerPrefs.HasKey("resolutionInd")) PlayerPrefs.SetInt("resolutionInd", 0);
 
+        if (!PlayerPrefs.HasKey("languageInd")) PlayerPrefs.SetInt("languageInd", 0);
+
+
 
         //Load saved settings
 
@@ -47,12 +50,14 @@ public class SettingsScript : MonoBehaviour
         GraphicsQuality = PlayerPrefs.GetInt("GraphicsQuality");
         IsFullScreen = PlayerPrefs.GetInt("IsFullScreen") == 1 ? true : false;
         resolutionInd = PlayerPrefs.GetInt("resolutionInd");
+        languageInd = PlayerPrefs.GetInt("languageInd");
 
 
 
         volumeSlider.value = mainVolume;
         graphicsDropdown.value = GraphicsQuality;
         resolutionDropdown.value = resolutionInd;
+        languageDropdown.value = languageInd;
     }
 
     public void Save()
@@ -68,6 +73,8 @@ public class SettingsScript : MonoBehaviour
 
         PlayerPrefs.SetInt("resolutionInd", resolutionInd);
         Screen.SetResolution(resolution.width, resolution.height, Screen.fullScreen);
+
+        PlayerPrefs.SetInt("languageInd", languageInd);
     }
 
     public void Exit()
@@ -99,4 +106,9 @@ public class SettingsScript : MonoBehaviour
         resolution = resolutions[resolutionIndex];
     }
 
+    //Game settings
+    public void SetLanguage(int languageIndex)
+    {
+        languageInd = languageIndex;
+    }
 }
