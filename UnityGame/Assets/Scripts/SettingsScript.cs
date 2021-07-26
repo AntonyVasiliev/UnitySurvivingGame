@@ -9,19 +9,16 @@ public class SettingsScript : MonoBehaviour
     public Dropdown graphicsDropdown, resolutionDropdown;
     public Slider volumeSlider;
     public AudioMixer audioMixer;
-    private float Mainvolume = 0;
-    private int GraphicsQuality = 5;
+    private float mainVolume;
+    private int GraphicsQuality, resolutionInd;
     private bool IsFullScreen;
     Resolution resolution;
     Resolution[] resolutions;
 
     private void Start()
     {
-        //Load saved settings
-        volumeSlider.value = Mainvolume;
-        graphicsDropdown.value = GraphicsQuality;
-
         //Get user resolution
+
         resolutions = Screen.resolutions;
         resolutionDropdown.ClearOptions();
 
@@ -30,16 +27,46 @@ public class SettingsScript : MonoBehaviour
             options.Add(resolutions[i].width + " x " + resolutions[i].height);
 
         resolutionDropdown.AddOptions(options);
+
+
+
+        //Creating PlayerPrefs
+
+        if (!PlayerPrefs.HasKey("mainVolume")) PlayerPrefs.SetFloat("mainVolume", 0);
+
+        if (!PlayerPrefs.HasKey("GraphicsQuality")) PlayerPrefs.SetInt("GraphicsQuality", 5);
+
+        if (!PlayerPrefs.HasKey("IsFullScreen")) PlayerPrefs.SetInt("IsFullScreen", 1);
+
+        if (!PlayerPrefs.HasKey("resolutionInd")) PlayerPrefs.SetInt("resolutionInd", 0);
+
+
+        //Load saved settings
+
+        mainVolume = PlayerPrefs.GetFloat("mainVolume");
+        GraphicsQuality = PlayerPrefs.GetInt("GraphicsQuality");
+        IsFullScreen = PlayerPrefs.GetInt("IsFullScreen") == 1 ? true : false;
+        resolutionInd = PlayerPrefs.GetInt("resolutionInd");
+
+
+
+        volumeSlider.value = mainVolume;
+        graphicsDropdown.value = GraphicsQuality;
+        resolutionDropdown.value = resolutionInd;
     }
 
     public void Save()
     {
-        audioMixer.SetFloat("Volume", Mainvolume);
+        PlayerPrefs.SetFloat("mainVolume", mainVolume);
+        audioMixer.SetFloat("Volume", mainVolume);
 
+        PlayerPrefs.SetInt("GraphicsQuality", GraphicsQuality);
         QualitySettings.SetQualityLevel(GraphicsQuality);
 
+        PlayerPrefs.SetInt("IsFullScreen", IsFullScreen ? 1 : 0);
         Screen.fullScreen = IsFullScreen;
 
+        PlayerPrefs.SetInt("resolutionInd", resolutionInd);
         Screen.SetResolution(resolution.width, resolution.height, Screen.fullScreen);
     }
 
@@ -52,7 +79,7 @@ public class SettingsScript : MonoBehaviour
     //Audio Settings
     public void SetVolume(float volume)
     {
-        Mainvolume = volume;
+        mainVolume = volume;
     }
 
     //Graphics Settings
@@ -68,8 +95,8 @@ public class SettingsScript : MonoBehaviour
 
     public void SetResolution(int resolutionIndex)
     {
+        resolutionInd = resolutionIndex;
         resolution = resolutions[resolutionIndex];
-        Debug.Log(resolution.width + " x " + resolution.height);
     }
 
 }
