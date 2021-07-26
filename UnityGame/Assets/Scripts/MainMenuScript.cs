@@ -5,7 +5,7 @@ public class MainMenuScript : MonoBehaviour
 {
     public void Resume()
     {
-        SceneManager.LoadScene(PlayerPrefs.GetInt("Game"));
+        SceneManager.LoadScene("GameScene");
     }
 
     public void NewGame()
