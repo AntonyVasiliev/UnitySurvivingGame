@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class playermove : MonoBehaviour
@@ -20,7 +18,7 @@ public class playermove : MonoBehaviour
     public bool isrunning= false;
 
     Vector3 velocity;
-    bool isgrounded;
+    public bool isgrounded;
 
     void SpeedEqual12()
     {
@@ -67,22 +65,26 @@ public class playermove : MonoBehaviour
         Vector3 move = transform.right * x + transform.forward * z;
 
         controller.Move(move * speed * Time.deltaTime);
+
         if (Input.GetKeyDown(KeyCode.LeftShift))
         {
             isrunning = true;
             speed = 18f;
             animator.Play("run");
         }
+
         if (Input.GetKeyUp(KeyCode.LeftShift))
         {
             speed = 12f;
             animator.Play("move");
             isrunning = false;
         }
+
         if (Input.GetButtonDown("Jump") && isgrounded)
         {
             velocity.y = Mathf.Sqrt(jumppower * 2f * -gravity);
         }
+
         velocity.y += gravity * Time.deltaTime;
         controller.Move(velocity * Time.deltaTime);
     }

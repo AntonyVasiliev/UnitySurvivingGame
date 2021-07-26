@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -7,7 +5,7 @@ public class MainMenuScript : MonoBehaviour
 {
     public void Resume()
     {
-        SceneManager.LoadScene("GameScene");
+        SceneManager.LoadScene(PlayerPrefs.GetInt("Game"));
     }
 
     public void NewGame()
