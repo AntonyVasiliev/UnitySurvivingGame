@@ -4,14 +4,13 @@ using System.Collections.Generic;
 
 public class LanguageManagerSettingsScene : MonoBehaviour
 {
-    public Dropdown qualityDropdown;
-    public Text Volume, Save, Exit, Language, Graphics, FullScreen;
+    [SerializeField] private Dropdown qualityDropdown;
+    [SerializeField] private Text Volume, Save, Exit, Language, Graphics, FullScreen;
     private int language;
 
     void Start()
     {
         // Get language
-        if (!PlayerPrefs.HasKey("languageInd")) PlayerPrefs.SetInt("languageInd", 0);
         language = PlayerPrefs.GetInt("languageInd");
 
         ChangeLanguage();
@@ -45,6 +44,7 @@ public class LanguageManagerSettingsScene : MonoBehaviour
                     Language.text = "Язык";
                     Graphics.text = "Видео";
                     FullScreen.text = "Полный экран";
+
                     //Dropdown
                     List<string> options = new List<string>(new string[] {"Жмыхнуло",
                     "Второе пришествие", "Среднячок", "Класс", "Супер", "Супер класс" });

@@ -5,44 +5,18 @@ using UnityEngine.SceneManagement;
 
 public class MainMenuScript : MonoBehaviour
 {
-    public AudioMixer audioMixer;
+    [SerializeField] private AudioMixer audioMixer;
 
     public void Start()
     {
-        //Creating PlayerPrefs
+        CreatePlayerPref("languageInd", 0);
+        CreatePlayerPref("mainVolume", 0);
+        CreatePlayerPref("GraphicsQuality", 5);
+        CreatePlayerPref("IsFullScreen", 1);
+        CreatePlayerPref("resolutionInd", 0);
+        CreatePlayerPref("languageInd", 0);
 
-        if (!PlayerPrefs.HasKey("mainVolume")) PlayerPrefs.SetFloat("mainVolume", 0);
-
-        if (!PlayerPrefs.HasKey("GraphicsQuality")) PlayerPrefs.SetInt("GraphicsQuality", 5);
-
-        if (!PlayerPrefs.HasKey("IsFullScreen")) PlayerPrefs.SetInt("IsFullScreen", 1);
-
-        if (!PlayerPrefs.HasKey("resolutionInd")) PlayerPrefs.SetInt("resolutionInd", 0);
-
-        if (!PlayerPrefs.HasKey("languageInd")) PlayerPrefs.SetInt("languageInd", 0);
-
-
-
-        //Load saved settings
-
-        float mainVolume = PlayerPrefs.GetFloat("mainVolume");
-        audioMixer.SetFloat("Volume", mainVolume);
-
-        int GraphicsQuality = PlayerPrefs.GetInt("GraphicsQuality");
-        QualitySettings.SetQualityLevel(GraphicsQuality);
-
-        bool IsFullScreen = PlayerPrefs.GetInt("IsFullScreen") == 1 ? true : false;
-        Screen.fullScreen = IsFullScreen;
-
-        int resolutionInd = PlayerPrefs.GetInt("resolutionInd");
-
-        Resolution[] resolutions = Screen.resolutions;
-        List<string> options = new List<string>();
-        for (int i = 0; i < resolutions.Length; i++)
-            options.Add(resolutions[i].width + " x " + resolutions[i].height);
-        Resolution resolution = resolutions[resolutionInd];
-
-        Screen.SetResolution(resolution.width, resolution.height, Screen.fullScreen);
+        LoadSettings();
     }
 
     public void Resume()
@@ -63,5 +37,32 @@ public class MainMenuScript : MonoBehaviour
     public void Quit()
     {
         Application.Quit();
+    }
+
+    private void CreatePlayerPref(string pref, int value)
+    {
+        if (!PlayerPrefs.HasKey(pref)) PlayerPrefs.SetFloat(pref, value);
+    }
+
+    private void LoadSettings()
+    {
+        float mainVolume = PlayerPrefs.GetFloat("mainVolume");
+        audioMixer.SetFloat("Volume", mainVolume);
+
+        int GraphicsQuality = PlayerPrefs.GetInt("GraphicsQuality");
+        QualitySettings.SetQualityLevel(GraphicsQuality);
+
+        bool IsFullScreen = PlayerPrefs.GetInt("IsFullScreen") == 1 ? true : false;
+        Screen.fullScreen = IsFullScreen;
+
+        int resolutionInd = PlayerPrefs.GetInt("resolutionInd");
+
+        Resolution[] resolutions = Screen.resolutions;
+        List<string> options = new List<string>();
+        for (int i = 0; i < resolutions.Length; i++)
+            options.Add(resolutions[i].width + " x " + resolutions[i].height);
+        Resolution resolution = resolutions[resolutionInd];
+
+        Screen.SetResolution(resolution.width, resolution.height, Screen.fullScreen);
     }
 }

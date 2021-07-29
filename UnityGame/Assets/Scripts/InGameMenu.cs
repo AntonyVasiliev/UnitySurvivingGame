@@ -3,49 +3,51 @@ using UnityEngine.SceneManagement;
 
 public class InGameMenu : MonoBehaviour
 {
-    public GameObject pauseMenu;
-    public static bool inmenu = false;
+    [SerializeField] private GameObject pauseMenu;
+    private bool isActive = false;
 
-    void Update()
+    private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            if (!inmenu) Pause();
+            if (!isActive) OpenMenu();
 
-            else Play();
+            else CloseMenu();
         }
     }
 
-    public void Pause()
+    public void OpenMenu()
     {
         pauseMenu.SetActive(true);
         Cursor.lockState = CursorLockMode.None;
-        inmenu = true;
+        isActive = true;
     }
 
-    public void Play()
+    public void CloseMenu()
     {
         pauseMenu.SetActive(false);
         Cursor.lockState = CursorLockMode.Locked;
-        inmenu = false;
+        isActive = false;
     }
 
-    public void Exit()
+    public void ExitGame()
     {
-        PlayerPrefs.SetInt("Game", SceneManager.GetActiveScene().buildIndex);
-        PlayerPrefs.Save();
-
         Application.Quit();
     }
 
-    public void Settings()
+    public void OpenSettings()
     {
         SceneManager.LoadScene("Settings");
     }
 
-    public void MainMenu()
+    public void OpenMainMenu()
     {
         SceneManager.LoadScene("MainMenu");
-        inmenu = false;
+        isActive = false;
+    }
+
+    public bool IsMenuActive()
+    {
+        return isActive;
     }
 }

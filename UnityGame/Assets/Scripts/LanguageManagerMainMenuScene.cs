@@ -3,13 +3,12 @@ using UnityEngine;
 
 public class LanguageManagerMainMenuScene : MonoBehaviour
 {
-    public Text Resume, Settings, NewGame, Quit;
+    [SerializeField] private Text Resume, Settings, NewGame, Quit;
     private int language;
 
     void Start()
     {
         // Get language
-        if (!PlayerPrefs.HasKey("languageInd")) PlayerPrefs.SetInt("languageInd", 0);
         language = PlayerPrefs.GetInt("languageInd");
 
         ChangeLanguage();

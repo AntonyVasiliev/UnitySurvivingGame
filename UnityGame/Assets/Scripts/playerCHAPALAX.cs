@@ -1,13 +1,11 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class playerCHAPALAX : MonoBehaviour
 {
-    public Animator animator;
-    public GameObject trigger;
+    [SerializeField] private Animator animator;
+    [SerializeField] private GameObject trigger;
 
-    void Update()
+    private void Update()
     {
         if (Input.GetMouseButton(0))
         {
@@ -15,7 +13,8 @@ public class playerCHAPALAX : MonoBehaviour
             Invoke("TriggerOff", 1f);
         }
     }
-    void TriggerOff()
+
+    private void TriggerOff()
     {
         trigger.SetActive(false);
     }

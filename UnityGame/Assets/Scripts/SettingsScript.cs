@@ -6,19 +6,24 @@ using UnityEngine.UI;
 
 public class SettingsScript : MonoBehaviour
 {
-    public Dropdown graphicsDropdown, resolutionDropdown, languageDropdown;
-    public Slider volumeSlider;
-    public AudioMixer audioMixer;
+    [SerializeField] private Dropdown graphicsDropdown, resolutionDropdown, languageDropdown;
+    [SerializeField] private Slider volumeSlider;
+    [SerializeField] private AudioMixer audioMixer;
     private float mainVolume;
     private int GraphicsQuality, resolutionInd, languageInd;
     private bool IsFullScreen;
-    Resolution resolution;
-    Resolution[] resolutions;
+    private Resolution resolution;
+    private Resolution[] resolutions;
 
     private void Start()
     {
-        //Get user resolution
+        GetResolution();
 
+        LoadSettings();
+    }
+
+    private void GetResolution()
+    {
         resolutions = Screen.resolutions;
         resolutionDropdown.ClearOptions();
 
@@ -27,38 +32,22 @@ public class SettingsScript : MonoBehaviour
             options.Add(resolutions[i].width + " x " + resolutions[i].height);
 
         resolutionDropdown.AddOptions(options);
+    }
 
-
-
-        //Creating PlayerPrefs
-
-        if (!PlayerPrefs.HasKey("mainVolume")) PlayerPrefs.SetFloat("mainVolume", 0);
-
-        if (!PlayerPrefs.HasKey("GraphicsQuality")) PlayerPrefs.SetInt("GraphicsQuality", 5);
-
-        if (!PlayerPrefs.HasKey("IsFullScreen")) PlayerPrefs.SetInt("IsFullScreen", 1);
-
-        if (!PlayerPrefs.HasKey("resolutionInd")) PlayerPrefs.SetInt("resolutionInd", 0);
-
-        if (!PlayerPrefs.HasKey("languageInd")) PlayerPrefs.SetInt("languageInd", 0);
-
-
-
-        //Load saved settings
-
+    private void LoadSettings()
+    {
         mainVolume = PlayerPrefs.GetFloat("mainVolume");
         GraphicsQuality = PlayerPrefs.GetInt("GraphicsQuality");
         IsFullScreen = PlayerPrefs.GetInt("IsFullScreen") == 1 ? true : false;
         resolutionInd = PlayerPrefs.GetInt("resolutionInd");
         languageInd = PlayerPrefs.GetInt("languageInd");
 
-
-
         volumeSlider.value = mainVolume;
         graphicsDropdown.value = GraphicsQuality;
         resolutionDropdown.value = resolutionInd;
         languageDropdown.value = languageInd;
     }
+
 
     public void Save()
     {
@@ -79,7 +68,7 @@ public class SettingsScript : MonoBehaviour
 
     public void Exit()
     {
-        if (InGameMenu.inmenu) SceneManager.LoadScene("GameScene");
+        if (true) SceneManager.LoadScene("GameScene");
         else SceneManager.LoadScene("MainMenu");
     }
 
