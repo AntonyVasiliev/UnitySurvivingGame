@@ -2,13 +2,13 @@ using UnityEngine;
 
 public class WorldGeneration : MonoBehaviour
 {
-    [SerializeField] private GameObject[] trees;
-    [SerializeField] private GameObject[] stones;
+    [SerializeField] private GameObject[] _trees;
+    [SerializeField] private GameObject[] _stones;
 
     private void Start()
     {
-        GenerateObjects(trees, 100, 0, 400, 0, 400);
-        GenerateObjects(stones, 100, 0, 400, 0, 400);
+        GenerateObjects(_trees, 100, 0, 400, 0, 400);
+        GenerateObjects(_stones, 100, 0, 400, 0, 400);
     }
 
     //generates objects in chosen radius

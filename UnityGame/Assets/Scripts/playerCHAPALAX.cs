@@ -2,20 +2,20 @@ using UnityEngine;
 
 public class playerCHAPALAX : MonoBehaviour
 {
-    [SerializeField] private Animator animator;
-    [SerializeField] private GameObject trigger;
+    [SerializeField] private Animator _animator;
+    [SerializeField] private GameObject _trigger;
 
     private void Update()
     {
         if (Input.GetMouseButton(0))
         {
-            trigger.SetActive(true);
+            _trigger.SetActive(true);
             Invoke("TriggerOff", 1f);
         }
     }
 
     private void TriggerOff()
     {
-        trigger.SetActive(false);
+        _trigger.SetActive(false);
     }
 }

@@ -5,16 +5,17 @@ using UnityEngine.SceneManagement;
 
 public class MainMenuScript : MonoBehaviour
 {
-    [SerializeField] private AudioMixer audioMixer;
+    [SerializeField] private GameObject _settingsMenu, _pauseMenu;
+    [SerializeField] private AudioMixer _audioMixer;
 
     public void Start()
     {
-        CreatePlayerPref("languageInd", 0);
-        CreatePlayerPref("mainVolume", 0);
+        CreatePlayerPref("LanguageIndex", 0);
+        CreatePlayerPref("MainVolume", 0);
         CreatePlayerPref("GraphicsQuality", 5);
         CreatePlayerPref("IsFullScreen", 1);
-        CreatePlayerPref("resolutionInd", 0);
-        CreatePlayerPref("languageInd", 0);
+        CreatePlayerPref("ResolutionIndex", 0);
+        CreatePlayerPref("LanguageIndex", 0);
 
         LoadSettings();
     }
@@ -29,9 +30,10 @@ public class MainMenuScript : MonoBehaviour
 
     }
 
-    public void Settings()
+    public void OpenSettings()
     {
-        SceneManager.LoadScene("Settings");
+        _pauseMenu.SetActive(false);
+        _settingsMenu.SetActive(true);
     }
 
     public void Quit()
@@ -46,8 +48,8 @@ public class MainMenuScript : MonoBehaviour
 
     private void LoadSettings()
     {
-        float mainVolume = PlayerPrefs.GetFloat("mainVolume");
-        audioMixer.SetFloat("Volume", mainVolume);
+        float mainVolume = PlayerPrefs.GetFloat("MainVolume");
+        _audioMixer.SetFloat("Volume", mainVolume);
 
         int GraphicsQuality = PlayerPrefs.GetInt("GraphicsQuality");
         QualitySettings.SetQualityLevel(GraphicsQuality);
@@ -55,7 +57,7 @@ public class MainMenuScript : MonoBehaviour
         bool IsFullScreen = PlayerPrefs.GetInt("IsFullScreen") == 1 ? true : false;
         Screen.fullScreen = IsFullScreen;
 
-        int resolutionInd = PlayerPrefs.GetInt("resolutionInd");
+        int resolutionInd = PlayerPrefs.GetInt("ResolutionIndex");
 
         Resolution[] resolutions = Screen.resolutions;
         List<string> options = new List<string>();

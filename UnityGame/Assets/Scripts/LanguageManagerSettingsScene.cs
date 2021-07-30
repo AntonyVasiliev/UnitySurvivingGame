@@ -4,51 +4,51 @@ using System.Collections.Generic;
 
 public class LanguageManagerSettingsScene : MonoBehaviour
 {
-    [SerializeField] private Dropdown qualityDropdown;
-    [SerializeField] private Text Volume, Save, Exit, Language, Graphics, FullScreen;
-    private int language;
+    [SerializeField] private Dropdown _qualityDropdown;
+    [SerializeField] private Text _volumeText, _saveText, _exitText, _languageText, _graphicsText, _fullScreenText;
+    private int _language;
 
-    void Start()
+    void Awake()
     {
         // Get language
-        language = PlayerPrefs.GetInt("languageInd");
+        _language = PlayerPrefs.GetInt("LanguageIndex");
 
         ChangeLanguage();
     }
 
     public void ChangeLanguage()
     {
-        switch (language)
+        switch (_language)
         {
             case 0:
                 {
-                    Volume.text = "Volume";
-                    Save.text = "Save";
-                    Exit.text = "Exit";
-                    Language.text = "Language";
-                    Graphics.text = "Graphics";
-                    FullScreen.text = "Full Screen";
+                    _volumeText.text = "Volume";
+                    _saveText.text = "Save";
+                    _exitText.text = "Exit";
+                    _languageText.text = "Language";
+                    _graphicsText.text = "Graphics";
+                    _fullScreenText.text = "Full Screen";
 
                     //Dropdown
                     List<string> options = new List<string>(new string[] {"Very low",
                     "Low", "Medium", "High", "Very high", "Ultra" });
-                    qualityDropdown.AddOptions(options);
+                    _qualityDropdown.AddOptions(options);
                 }
                 break;
 
             case 1:
                 {
-                    Volume.text = "Громкость";
-                    Save.text = "Сохранить";
-                    Exit.text = "Выйти";
-                    Language.text = "Язык";
-                    Graphics.text = "Видео";
-                    FullScreen.text = "Полный экран";
+                    _volumeText.text = "Громкость";
+                    _saveText.text = "Сохранить";
+                    _exitText.text = "Выйти";
+                    _languageText.text = "Язык";
+                    _graphicsText.text = "Видео";
+                    _fullScreenText.text = "Полный экран";
 
                     //Dropdown
                     List<string> options = new List<string>(new string[] {"Жмыхнуло",
                     "Второе пришествие", "Среднячок", "Класс", "Супер", "Супер класс" });
-                    qualityDropdown.AddOptions(options);
+                    _qualityDropdown.AddOptions(options);
                 }
                 break;
 

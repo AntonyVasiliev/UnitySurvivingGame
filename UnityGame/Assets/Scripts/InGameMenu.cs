@@ -3,14 +3,15 @@ using UnityEngine.SceneManagement;
 
 public class InGameMenu : MonoBehaviour
 {
-    [SerializeField] private GameObject pauseMenu;
-    private bool isActive = false;
+    [SerializeField] private GameObject _settings;
+    [SerializeField] private GameObject _pauseMenu;
+    private bool _isActive = false;
 
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            if (!isActive) OpenMenu();
+            if (!_isActive) OpenMenu();
 
             else CloseMenu();
         }
@@ -18,16 +19,16 @@ public class InGameMenu : MonoBehaviour
 
     public void OpenMenu()
     {
-        pauseMenu.SetActive(true);
+        _pauseMenu.SetActive(true);
         Cursor.lockState = CursorLockMode.None;
-        isActive = true;
+        _isActive = true;
     }
 
     public void CloseMenu()
     {
-        pauseMenu.SetActive(false);
+        _pauseMenu.SetActive(false);
         Cursor.lockState = CursorLockMode.Locked;
-        isActive = false;
+        _isActive = false;
     }
 
     public void ExitGame()
@@ -37,17 +38,18 @@ public class InGameMenu : MonoBehaviour
 
     public void OpenSettings()
     {
-        SceneManager.LoadScene("Settings");
+        _settings.SetActive(true);
+        _pauseMenu.SetActive(false);
     }
 
     public void OpenMainMenu()
     {
         SceneManager.LoadScene("MainMenu");
-        isActive = false;
+        _isActive = false;
     }
 
     public bool IsMenuActive()
     {
-        return isActive;
+        return _isActive;
     }
 }

@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class CameraMovement : MonoBehaviour
 {
-    public GameObject pauseMenu;
-    [SerializeField] private Transform playerBody;
-    private float mouseSensivity = 100f;
-    private float xRotation;
+    [SerializeField] private GameObject _pauseMenu;
+    [SerializeField] private Transform _playerBody;
+    private float _mouseSensivity = 100f;
+    private float _xRotation;
 
     private void Start()
     {
@@ -16,10 +16,10 @@ public class CameraMovement : MonoBehaviour
 
     private void Update()
     {
-        bool isMenu = pauseMenu.GetComponent<InGameMenu>().IsMenuActive();
+        bool isMenu = _pauseMenu.GetComponent<InGameMenu>().IsMenuActive();
         if (!isMenu) {
-            float mouseY = Input.GetAxis("Mouse Y") * mouseSensivity * Time.deltaTime;
-            float mouseX = Input.GetAxis("Mouse X") * mouseSensivity * Time.deltaTime;
+            float mouseY = Input.GetAxis("Mouse Y") * _mouseSensivity * Time.deltaTime;
+            float mouseX = Input.GetAxis("Mouse X") * _mouseSensivity * Time.deltaTime;
 
             MoveCamera(mouseY);
             RotatePlayer(mouseX);
@@ -29,16 +29,16 @@ public class CameraMovement : MonoBehaviour
     //moves camera using "Mouse Y" axis
     private void MoveCamera(float value)
     {
-        xRotation -= value;
-        xRotation = Mathf.Clamp(xRotation, -90f, 90f);
+        _xRotation -= value;
+        _xRotation = Mathf.Clamp(_xRotation, -90f, 90f);
 
-        transform.localRotation = Quaternion.Euler(xRotation, 90f, 0f);
+        transform.localRotation = Quaternion.Euler(_xRotation, 90f, 0f);
     }
 
     //rotate player using "Mouse X" axis
     private void RotatePlayer(float value)
     {
-        playerBody.Rotate(Vector3.up * value);
+        _playerBody.Rotate(Vector3.up * value);
     }
 
 }

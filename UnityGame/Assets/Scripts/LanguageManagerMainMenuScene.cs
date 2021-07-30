@@ -3,33 +3,33 @@ using UnityEngine;
 
 public class LanguageManagerMainMenuScene : MonoBehaviour
 {
-    [SerializeField] private Text Resume, Settings, NewGame, Quit;
-    private int language;
+    [SerializeField] private Text _resumeText, _settingsText, _newGameText, _quitText;
+    private int _language;
 
-    void Start()
+    void Awake()
     {
         // Get language
-        language = PlayerPrefs.GetInt("languageInd");
+        _language = PlayerPrefs.GetInt("LanguageIndex");
 
         ChangeLanguage();
     }
 
     public void ChangeLanguage()
     {
-        switch (language)
+        switch (_language)
         {
             case 0:
-                Quit.text = "Quit";
-                Resume.text = "Resume";
-                NewGame.text = "New game";
-                Settings.text = "Settings";
+                _quitText.text = "Quit";
+                _resumeText.text = "Resume";
+                _newGameText.text = "New game";
+                _settingsText.text = "Settings";
                 break;
 
             case 1:
-                Quit.text = "Выйти";
-                Resume.text = "Продолжить";
-                NewGame.text = "Новая игра";
-                Settings.text = "Настройки";
+                _quitText.text = "Выйти";
+                _resumeText.text = "Продолжить";
+                _newGameText.text = "Новая игра";
+                _settingsText.text = "Настройки";
                 break;
 
         }
